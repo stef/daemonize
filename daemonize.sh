@@ -1,12 +1,12 @@
 #!/usr/bin/ksh
 # (c) 2012 s@ctrlc.hu, GPLv3+
 # creates a skeleton for daemontools/runit
-# copies the ./run from stdin
+# copies the ./run from stdin or uses the files in $1 for bootstrapping the service
 
-basedir=/etc/sv/"$1"
+basedir=/etc/sv/"${1##*/}"
 
 mkdir -p "$basedir"
-[[ -d "$2" ]] && cp -r "$2/*" "$basedir"
+[[ -d "$1" ]] && cp -r "$1"/* "$basedir"
 
 [[ ! -r "$basedir"/run ]] && {
     cat >"$basedir"/run <<EOF
