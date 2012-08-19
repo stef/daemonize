@@ -13,7 +13,7 @@ Running is simple:
 ./daemonize.sh service
 #+END_SRC
 
-Creates all necessary files in /etc/sv/service, go and edit
+This creates all necessary files in /etc/sv/service. Go and edit
 /etc/sv/service/run to add the command line to start the service after
 the exec. Make very sure that this service runs in the foreground,
 otherwise you can easily create a forkbomb this way. Easiest to check
