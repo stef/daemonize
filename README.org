@@ -1,0 +1,24 @@
+* daemonize.sh
+
+...is a simple script that bootstraps runit services. It copies an
+optional skeleton creates the necessary supervise directories and
+links for the service and an associated logger.
+
+Skeletons mostly consist of a 'run' file and any settings and other
+config files. For some examples see https://github.com/stef/tunnel-daemons
+
+Running is simple:
+
+#+BEGIN_SRC sh
+./daemonize.sh service
+#+END_SRC
+
+Creates all necessary files in /etc/sv/service, go and edit
+/etc/sv/service/run to add the command line to start the service after
+the exec. Make very sure that this service runs in the foreground,
+otherwise you can easily create a forkbomb this way. Easiest to check
+is by running ./run and making sure it does block and provide the
+expected service.
+
+Warning: This is only tested under debian, if you want to run it on other OSes
+you should adapt your paths in the source.
