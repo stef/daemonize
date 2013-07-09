@@ -1,5 +1,11 @@
 #!/usr/bin/ksh
-# (c) 2012 s@ctrlc.hu, GPLv3+
+# (c) 2012 s@ctrlc.hu
+
+#  This is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 3 of the License, or
+#  (at your option) any later version.
+
 # creates a skeleton for daemontools/runit
 # copies the ./run from stdin or uses the files in $1 for bootstrapping the service
 
@@ -31,4 +37,4 @@ exec chpst -unobody logger -d -p daemon.err -t $1
 EOF
 chmod +x "$basedir"/log/run
 mkdir -p /var/lib/supervise/"$1".log || exit 1
-ln -s /var/lib/supervise/"$1" "$basedir"/log/supervise
+ln -s /var/lib/supervise/"$1".log "$basedir"/log/supervise
